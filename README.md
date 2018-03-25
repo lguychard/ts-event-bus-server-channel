@@ -1,0 +1,1 @@
+HTTP server channel for [ts-event-bus](https://github.com/Dashlane/ts-event-bus)

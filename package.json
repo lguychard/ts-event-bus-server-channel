@@ -1,0 +1,22 @@
+{
+  "name": "ts-event-bus-http-server-channel",
+  "version": "0.0.1",
+  "description": "HTTP server channel implementation for ts-event-bus",
+  "main": "dist/index.js",
+  "author": "l.guychard@gmail.com",
+  "license": "MIT",
+  "peerDependencies": {
+    "ts-event-bus": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^9.6.0",
+    "ts-event-bus": "file:../../ts-event-bus",
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "@types/body-parser": "^1.16.8",
+    "@types/express": "^4.11.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  }
+}
