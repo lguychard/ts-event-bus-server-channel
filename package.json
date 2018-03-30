@@ -5,6 +5,10 @@
   "main": "dist/index.js",
   "author": "l.guychard@gmail.com",
   "license": "MIT",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
   "peerDependencies": {
     "ts-event-bus": "^1.0.2"
   },

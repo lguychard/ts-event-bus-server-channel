@@ -2,6 +2,14 @@ import { GenericChannel, TransportMessage } from 'ts-event-bus'
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 
+export interface HTTPServerChannelOptions {
+    port: number,
+    static?: {
+        prefix?: string,
+        folder: string
+    }
+}
+
 export default class HTTPServerChannel extends GenericChannel {
 
     private _requests: { [requestId: string]: (message: TransportMessage) => void } = {}
@@ -9,13 +17,21 @@ export default class HTTPServerChannel extends GenericChannel {
     private _handlerRegisteredMessages: any[] = []
     private _router = express.Router()
 
-    constructor(private _port: number) {
+    constructor(private _config: HTTPServerChannelOptions) {
         super()
         this._connected()
         this._setupRoutes()
         this._server.use(bodyParser.json())
         this._server.use(this._router)
-        this._server.listen(this._port)
+        if (this._config.static) {
+            const { prefix, folder } = this._config.static
+            if (prefix) {
+                this._server.use(prefix, express.static(folder))
+            } else {
+                this._server.use(express.static(folder))
+            }
+        }
+        this._server.listen(this._config.port)
     }
 
     public send(message: TransportMessage): void {
